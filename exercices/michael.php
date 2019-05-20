@@ -24,11 +24,16 @@ class michael
 
             // on va tenter d'hydrater (donner des valeurs venant d'un tableau à chaque (certains) attributs non publiques en utilsant un méthode créant les setters)
 
+            $this->hydrate($tab);
 
             /* on peut hydrater manuellement en utilisant les setters et les clefs du tableau, c'est ce que font les robots car ils n'ont pas d'hydratateurs, risque d'erreurs si le tableau ne contient pas les bonnes clefs
 
+            // bonne pratique si pas de fonction d'hydratation
             $this->setNom($tab['nom']);
             $this->setDateNaissance($tab['dateNaissance']);
+
+            // mauvaise pratique sans hydratation
+            $this->nom = "quelque chose";
 
             */
 
@@ -36,6 +41,28 @@ class michael
         }
     }
 
+
+    // méthode d'hydratation (crée les setters depuis les clef du tableau $data, si ces setters existe on les utilises pour changer les valeurs des attributs)
+
+    private function hydrate(array $datas){
+
+        // tant qu'on a des éléments dans le tableau
+        foreach ($datas as $key => $value){
+
+            // création du nom du setter en partant de la clef du tableau ("nom" => "setNom")
+            $setterName = "set".ucfirst($key);
+
+            // on vérifie si le setter existe bien dans cette instance de classe
+            if(method_exists($this,$setterName)){
+
+                // on lui attribue la valeur ("nom"=>"Mike" | $this->setNom("Mike"))
+                $this->$setterName($value);
+            }
+
+        }
+
+
+    }
 
 
     // Getters (permet d'afficher des attributs non publiques en dehors de la classe -> méthodes publiques)
