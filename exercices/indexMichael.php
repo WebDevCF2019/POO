@@ -11,9 +11,18 @@ $p2 = new michael(
         ]
 );
 
-/*
- echo michael::GENRE; // affiche "M"
 
+echo 'michael::GENRE =>'.michael::GENRE; // affiche "M"
+echo "<br>";
+
+// utilisation d'un setters pour changer le nom
+$p1->setNom("Lulu");
+
+//
+echo $p1->getNom();
+
+
+/*
 echo $p2->afficheMaFiche(); //
 
 <p>
