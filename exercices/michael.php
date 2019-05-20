@@ -17,27 +17,11 @@ class michael
 
 
     // Constructeur (appelé lors de l'instanciation => new michael, sert généralement à passer des paramètres à l'instance de classe lors de sa création)
+
     public function __construct(array $tab = [])
     {
-        // si on passe des arguments de type tableau au constructeur (new michael([arguements...]))
         if (!empty($tab)) {
-
-            // on va tenter d'hydrater (donner des valeurs venant d'un tableau à chaque (certains) attributs non publiques en utilsant un méthode créant les setters)
-
             $this->hydrate($tab);
-
-            /* on peut hydrater manuellement en utilisant les setters et les clefs du tableau, c'est ce que font les robots car ils n'ont pas d'hydratateurs, risque d'erreurs si le tableau ne contient pas les bonnes clefs
-
-            // bonne pratique si pas de fonction d'hydratation
-            $this->setNom($tab['nom']);
-            $this->setDateNaissance($tab['dateNaissance']);
-
-            // mauvaise pratique sans hydratation
-            $this->nom = "quelque chose";
-
-            */
-
-
         }
     }
 
@@ -45,23 +29,22 @@ class michael
     // méthode d'hydratation (crée les setters depuis les clef du tableau $data, si ces setters existe on les utilises pour changer les valeurs des attributs)
 
     private function hydrate(array $datas){
-
-        // tant qu'on a des éléments dans le tableau
         foreach ($datas as $key => $value){
-
-            // création du nom du setter en partant de la clef du tableau ("nom" => "setNom")
             $setterName = "set".ucfirst($key);
-
-            // on vérifie si le setter existe bien dans cette instance de classe
             if(method_exists($this,$setterName)){
-
-                // on lui attribue la valeur ("nom"=>"Mike" | $this->setNom("Mike"))
                 $this->$setterName($value);
             }
-
         }
+    }
 
-
+    // fonction publique de création de fiche
+    public function afficheMaFiche(){
+        return "<p>Votre Fiche:<br>
+dateNaissance: {$this->getDateNaissance()}<br>
+prenom: {$this->getPrenom()}<br>
+nom: {$this->getNom()}<br>
+surnom: {$this->getSurnom()}<br>
+nationalite: {$this->getNationalite()}</p>";
     }
 
 
@@ -78,8 +61,11 @@ class michael
         return $this->prenom;
     }
 
-    public function getNom()
+    public function getNom(bool $maj=false)
     {
+        if($maj){
+            return strtoupper($this->nom);
+        }
         return $this->nom;
     }
 
