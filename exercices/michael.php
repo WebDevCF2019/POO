@@ -16,7 +16,6 @@ class michael
     // Méthodes
 
 
-
     // Constructeur (appelé lors de l'instanciation => new michael, sert généralement à passer des paramètres à l'instance de classe lors de sa création)
     public function __construct(array $tab = [])
     {
@@ -25,6 +24,13 @@ class michael
 
             // on va tenter d'hydrater (donner des valeurs venant d'un tableau à chaque (certains) attributs non publiques en utilsant un méthode créant les setters)
 
+
+            /* on peut hydrater manuellement en utilisant les setters et les clefs du tableau, c'est ce que font les robots car ils n'ont pas d'hydratateurs, risque d'erreurs si le tableau ne contient pas les bonnes clefs
+
+            $this->setNom($tab['nom']);
+            $this->setDateNaissance($tab['dateNaissance']);
+
+            */
 
 
         }

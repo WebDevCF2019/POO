@@ -16,9 +16,9 @@ echo 'michael::GENRE =>'.michael::GENRE; // affiche "M"
 echo "<br>";
 
 // utilisation d'un setters pour changer le nom
-$p1->setNom("Lulu");
+$p1->setNom(" Lala<br> Coucou");
 
-//
+// affichage du nouveau nom de $p1
 echo $p1->getNom();
 
 
