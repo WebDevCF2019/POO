@@ -5,7 +5,7 @@ require_once "connect3.php";
 
 $datetime = date("Y-m-d H:i:s");
 
-$updateall = $connexion->exec("UPDATE pdo1 SET ladate='$datetime'")
+$updateall = $connexion->exec("UPDATE pdo1 SET ladate='$datetime'");
 
 ?>
 <!DOCTYPE html>
