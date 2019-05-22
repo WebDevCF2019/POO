@@ -26,6 +26,7 @@ $resultat = $recup->fetchAll(PDO::FETCH_ASSOC);
 </nav>
 <div>
     <?php
+
     foreach ($resultat as $item){
         echo "<h3>".$item['nom']."</h3>";
         echo "<p>".$item['texte']."</p>";
@@ -33,6 +34,7 @@ $resultat = $recup->fetchAll(PDO::FETCH_ASSOC);
         echo "<a href='detail.php?id={$item['id']}'>afficher le détail</a>";
 
     }
+
     ?>
 </div>
 </body>
