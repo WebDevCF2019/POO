@@ -1,4 +1,6 @@
 <?php
+
+/*mysqli
 $sql = "SELECT idusers, thelogin,thename FROM users WHERE 
 idusers = $iduser;";
 
@@ -32,6 +34,12 @@ if (mysqli_num_rows($recup_user)) {
 } else {
     $message = "Cet utilisateur n'existe pas.";
 }
+
+*/
+
+/*
+ * PDO
+ */
 ?>
 <!DOCTYPE html>
 <html lang="en">

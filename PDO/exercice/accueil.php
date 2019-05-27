@@ -8,6 +8,8 @@ $sql = "SELECT a.idarticles, a.thetitle, LEFT(a.thetext,300) AS thetext,
 		ON a.users_idusers = u.idusers
 	ORDER BY a.thedate DESC;";
 
+/*mysqli
+
 $recup_art = mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
 
 if(mysqli_num_rows($recup_art)){
@@ -15,6 +17,11 @@ if(mysqli_num_rows($recup_art)){
 }else{
     $message = "Pas encore d'articles";
 }
+*/
+
+/*
+ * PDO
+ */
 ?>
 <!DOCTYPE html>
 <html lang="en">

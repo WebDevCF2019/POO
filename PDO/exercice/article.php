@@ -1,4 +1,5 @@
 <?php
+/* mysqli
 $sql = "SELECT a.*, u.thename
 	FROM articles a
     INNER JOIN users u
@@ -13,6 +14,11 @@ if(mysqli_num_rows($recup_art)){
 }else{
     $message = "Cet article n'existe plus ou a été déplacé.";
 }
+*/
+
+/*
+ * PDO
+ */
 ?>
 <!DOCTYPE html>
 <html lang="en">
