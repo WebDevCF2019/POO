@@ -40,6 +40,37 @@ if (mysqli_num_rows($recup_user)) {
 /*
  * PDO
  */
+
+$sql = "SELECT idusers, thelogin,thename FROM users WHERE 
+idusers = ?;";
+
+$recup_user = $connexion->prepare($sql);
+
+$recup_user->execute([$iduser]);
+
+if($recup_user->rowCount()){
+    $item = $recup_user->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT idarticles, thetitle, 
+              LEFT(thetext,300) AS thetext, thedate
+	        FROM articles 
+              WHERE users_idusers=?
+            ORDER BY thedate DESC";
+    $recup_art = $connexion->prepare($sql);
+    $recup_art->bindValue(1,$iduser,PDO::PARAM_INT);
+    $recup_art->execute();
+    if($recup_art->rowCount()){
+        $articles = $recup_art->fetchAll(PDO::FETCH_ASSOC);
+    }else{
+        $message_art = "Cet utilisateur n'a pas encore écrit d'article";
+    }
+}else {
+    $message = "Cet utilisateur n'existe pas.";
+}
+
+
+
+// JE SUIS TROP FORT #
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -29,7 +29,7 @@ if($recup_art->rowCount()){
      $item= $recup_art->fetch(PDO::FETCH_ASSOC);
 } else{
     $message = "Cet article n'existe plus ou a été déplacé.";
-    
+
 }
 
 
