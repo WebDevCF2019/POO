@@ -1,12 +1,14 @@
 <?php
 
 // requête
+
 $sql = "SELECT a.idarticles, a.thetitle, LEFT(a.thetext,300) AS thetext,
 	a.thedate, u.thename, u.idusers
 	FROM articles a
     INNER JOIN users u
 		ON a.users_idusers = u.idusers
 	ORDER BY a.thedate DESC;";
+
 
 /*mysqli
 
@@ -22,6 +24,14 @@ if(mysqli_num_rows($recup_art)){
 /*
  * PDO
  */
+$recup_art =$connexion->query($sql);
+if($recup_art->rowCount()){
+    $array_art=$recup_art->fetchAll(PDO::FETCH_ASSOC);
+}else{
+    $message = "Pas encore d'articles";
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

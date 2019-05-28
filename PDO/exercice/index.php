@@ -12,7 +12,9 @@ session_start();
  * dependencies
  */
 require_once "config.php";
-require_once "mysqliConnect.php";
+
+// utilisation de la connexion PDO
+require_once "connectPDO.php";
 
 /*
  * routing
