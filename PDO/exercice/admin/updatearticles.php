@@ -1,13 +1,18 @@
 <?php
 // on récupère les dépendances (! un dossier en dessous ../
 require_once "../config.php";
+/* mysqli
 require_once "../mysqliConnect.php";
+*/
+
+// PDO
 
 // si la variable get 'id' existe et est une chaîne de caractère ne contenant que des chiffres
 if(isset($_GET['id'])&& ctype_digit($_GET['id'])){
 
     $idarticle = (int) $_GET['id'];
 
+    /* mysqli
     $sql = "SELECT * FROM articles WHERE idarticles = $idarticle ;";
 
     $recup_art = mysqli_query($mysqli,$sql)or die(mysqli_error($mysqli));
@@ -22,6 +27,9 @@ if(isset($_GET['id'])&& ctype_digit($_GET['id'])){
         header("Location: accueiladmin.php");
         exit;
     }
+    */
+
+    // PDO
 
 }else{
     header("Location: accueiladmin.php");
@@ -46,9 +54,15 @@ if(isset($_POST['titre'],$_POST['texte'],$_POST['users_id'])){
         !empty($texte)&&
         !empty($user_id)){
 
+        /* mysqli
+
         $sql = "UPDATE articles SET thetitle='$titre', thetext='$texte',users_idusers = $user_id  WHERE idarticles=$idarticle";
 
         mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
+
+        */
+
+        // PDO
 
         header("Location: accueiladmin.php");
         exit;
@@ -62,6 +76,7 @@ if(isset($_POST['titre'],$_POST['texte'],$_POST['users_id'])){
 
 // on récupère tous les auteurs pour les proposer comme auteur du nouvel article (<select><option> en html)
 
+/* mysqli
 $sql = "SELECT idusers,thename FROM users ORDER BY thename ASC";
 $recup_users = mysqli_query($mysqli,$sql)or die(mysqli_error($mysqli));
 
@@ -75,7 +90,9 @@ if(mysqli_num_rows($recup_users)===0){
     // au moins un utilisateur
     $users = mysqli_fetch_all($recup_users, MYSQLI_ASSOC);
 }
+*/
 
+// PDO
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,11 +1,17 @@
 <?php
 // on récupère les dépendances (! un dossier en dessous ../
 require_once "../config.php";
-require_once "../mysqliConnect.php";
 
+/* mysqli
+require_once "../mysqliConnect.php";
+*/
+
+// PDO
 
 // on récupère tous articles déja présents
 
+
+/* mysqli
 $sql = "SELECT * FROM articles ORDER BY thedate DESC";
 $recup_art = mysqli_query($mysqli,$sql)or die(mysqli_error($mysqli));
 
@@ -16,6 +22,9 @@ if(mysqli_num_rows($recup_art)===0){
     // au moins un article
     $pasvide = mysqli_fetch_all($recup_art, MYSQLI_ASSOC);
 }
+*/
+
+// PDO
 
 ?>
 <!DOCTYPE html>

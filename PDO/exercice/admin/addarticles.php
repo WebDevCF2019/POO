@@ -1,7 +1,10 @@
 <?php
 // on récupère les dépendances (! un dossier en dessous ../
 require_once "../config.php";
+/* mysqli
 require_once "../mysqliConnect.php";
+*/
+// PDO
 
 
 // si le formulaire a été envoyé
@@ -21,9 +24,14 @@ if(isset($_POST['titre'],$_POST['texte'],$_POST['users_id'])){
         !empty($texte)&&
         !empty($user_id)){
 
+        /* mysqli
         $sql = "INSERT INTO articles (thetitle,thetext,users_idusers) VALUES ('$titre','$texte',$user_id)";
 
         mysqli_query($mysqli,$sql) or die(mysqli_error($mysqli));
+        */
+
+        // PDO
+
 
         header("Location: accueiladmin.php");
 
@@ -37,7 +45,10 @@ if(isset($_POST['titre'],$_POST['texte'],$_POST['users_id'])){
 
 // on récupère tous les auteurs pour les proposer comme auteur du nouvel article (<select><option> en html)
 
+
 $sql = "SELECT idusers,thename FROM users ORDER BY thename ASC";
+
+/*mysqli
 $recup_users = mysqli_query($mysqli,$sql)or die(mysqli_error($mysqli));
 
 // pas encore d'utilisateur
@@ -50,7 +61,9 @@ if(mysqli_num_rows($recup_users)===0){
     // au moins un utilisateur
     $users = mysqli_fetch_all($recup_users, MYSQLI_ASSOC);
 }
+*/
 
+// PDO
 ?>
 <!DOCTYPE html>
 <html lang="en">
