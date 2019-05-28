@@ -19,6 +19,20 @@ if(mysqli_num_rows($recup_art)){
 /*
  * PDO
  */
+$recup_art=$connexion->prepare("SELECT a.*, u.thename
+	FROM articles a
+    INNER JOIN users u
+		ON a.users_idusers = u.idusers
+    WHERE a.idarticles = ?;");
+$recup_art->execute([$idarticle]);
+if($recup_art->rowCount()){
+     $item= $recup_art->fetch(PDO::FETCH_ASSOC);
+} else{
+    $message = "Cet article n'existe plus ou a été déplacé.";
+    
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
