@@ -5,6 +5,7 @@ require_once "../mysqliConnect.php";
 */
 
 // PDO
+require_once "../connectPDO.php";
 
 if(isset($_GET['id'])&& ctype_digit($_GET['id'])){
 
@@ -19,6 +20,11 @@ if(isset($_GET['id'])&& ctype_digit($_GET['id'])){
     */
     
     // PDO
+    $sql = "DELETE FROM articles WHERE idarticles = :lid";
+
+    $delete = $connexion->prepare($sql);
+
+    $delete->execute(array("lid"=>$id));
 
     header("Location: accueiladmin.php");
 

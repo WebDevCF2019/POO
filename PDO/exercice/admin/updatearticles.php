@@ -6,6 +6,7 @@ require_once "../mysqliConnect.php";
 */
 
 // PDO
+require_once "../connectPDO.php";
 
 // si la variable get 'id' existe et est une chaîne de caractère ne contenant que des chiffres
 if(isset($_GET['id'])&& ctype_digit($_GET['id'])){
@@ -30,6 +31,18 @@ if(isset($_GET['id'])&& ctype_digit($_GET['id'])){
     */
 
     // PDO
+    $sql = "SELECT * FROM articles WHERE idarticles = ? ;";
+    $recup_art = $connexion->prepare($sql);
+
+    $recup_art->execute([$idarticle]);
+
+    if($recup_art->rowCount()){
+        $article = $recup_art->fetch(PDO::FETCH_ASSOC);
+    }else{
+        header("Location: accueiladmin.php");
+        exit;
+    }
+
 
 }else{
     header("Location: accueiladmin.php");
@@ -63,6 +76,11 @@ if(isset($_POST['titre'],$_POST['texte'],$_POST['users_id'])){
         */
 
         // PDO
+        $sql = "UPDATE articles SET thetitle=?, thetext=?,users_idusers = ?  WHERE idarticles=?";
+
+        $update = $connexion->prepare($sql);
+
+        $update->execute([$titre,$texte,$user_id,$idarticle]);
 
         header("Location: accueiladmin.php");
         exit;
@@ -93,6 +111,17 @@ if(mysqli_num_rows($recup_users)===0){
 */
 
 // PDO
+$sql = "SELECT idusers,thename FROM users ORDER BY thename ASC";
+$recup_users = $connexion->query($sql);
+
+if($recup_users->rowCount()){
+    $users = $recup_users->fetchAll(PDO::FETCH_ASSOC);
+}else{
+    header("Location: ../");
+    exit;
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -5,7 +5,7 @@ require_once "../config.php";
 require_once "../mysqliConnect.php";
 */
 // PDO
-
+require_once "../connectPDO.php";
 
 // si le formulaire a été envoyé
 if(isset($_POST['titre'],$_POST['texte'],$_POST['users_id'])){
@@ -31,7 +31,15 @@ if(isset($_POST['titre'],$_POST['texte'],$_POST['users_id'])){
         */
 
         // PDO
+        $sql = "INSERT INTO articles (thetitle,thetext,users_idusers) VALUES (?,?,?)";
 
+        $add_request = $connexion->prepare($sql);
+
+        $add_request->bindValue(1,$titre,PDO::PARAM_STR);
+        $add_request->bindValue(2,$texte,PDO::PARAM_STR);
+        $add_request->bindValue(3,$user_id,PDO::PARAM_INT);
+
+        $add_request->execute();
 
         header("Location: accueiladmin.php");
 
@@ -64,6 +72,13 @@ if(mysqli_num_rows($recup_users)===0){
 */
 
 // PDO
+$recup_users = $connexion->query($sql);
+if($recup_users->rowCount()){
+    $users = $recup_users->fetchAll(PDO::FETCH_ASSOC);
+}else{
+    header("Location: ../");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

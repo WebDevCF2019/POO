@@ -7,6 +7,7 @@ require_once "../mysqliConnect.php";
 */
 
 // PDO
+require_once "../connectPDO.php";
 
 // on récupère tous articles déja présents
 
@@ -25,7 +26,14 @@ if(mysqli_num_rows($recup_art)===0){
 */
 
 // PDO
+$sql = "SELECT * FROM articles ORDER BY thedate DESC";
+$recup_art = $connexion->query($sql);
 
+if($recup_art->rowCount()){
+    $pasvide = $recup_art->fetchAll(PDO::FETCH_ASSOC);
+}else{
+    $vide = "pas encore d'articles";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,19 +109,25 @@ if(mysqli_num_rows($recup_art)===0){
                     <th>supprimer</th>
                 </tr>
                 <?php
-                foreach ($pasvide AS $item){
-                ?>
-                <tr>
-                    <td><?=$item['idarticles']?></td>
-                    <td><?=$item['thetitle']?></td>
-                    <td><?=substr($item['thetext'],0,150)?> ... </td>
-                    <td><?=$item['thedate']?></td>
-                    <td>
-                        <a href="updatearticles.php?id=<?=$item['idarticles']?>"><img src="../img/edit.png"></a></td>
-                    <td>
-                        <a href="#" onclick="deleteArticle(<?=$item['idarticles']?>); return false;"><img src="../img/delete.png"></a></td>
-                </tr>
-                <?php
+                if(isset($vide)){
+                    echo "<tr><td colspan='6'>$vide</td>";
+                }else {
+                    foreach ($pasvide AS $item) {
+                        ?>
+                        <tr>
+                            <td><?= $item['idarticles'] ?></td>
+                            <td><?= $item['thetitle'] ?></td>
+                            <td><?= substr($item['thetext'], 0, 150) ?> ...</td>
+                            <td><?= $item['thedate'] ?></td>
+                            <td>
+                                <a href="updatearticles.php?id=<?= $item['idarticles'] ?>"><img
+                                            src="../img/edit.png"></a></td>
+                            <td>
+                                <a href="#" onclick="deleteArticle(<?= $item['idarticles'] ?>); return false;"><img
+                                            src="../img/delete.png"></a></td>
+                        </tr>
+                        <?php
+                    }
                 }
                 ?>
             </table>
