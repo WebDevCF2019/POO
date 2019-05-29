@@ -2,6 +2,11 @@
 require_once "config.php";
 require_once "connectPDO.php";
 
+/*
+ *
+ * LA DB doit être en INNODB
+ *
+ */
 
 /*
  * Renvoie un chaine de caractère de la longueur passée en argument
@@ -20,7 +25,23 @@ function donneTexte(int $nb = 5): string {
 
 // transaction
 
+// valeurs de départ
+$nom = donneTexte(20);
+$texte = donneTexte(500);
 
+try {
+
+    $connexion->beginTransaction(); // début de transaction
+
+
+    $connexion->exec("INSERT INTO pdo1 (nom,texte) VALUES ('ggg','g g g g')");
+
+    $connexion->exec("INSERT INTO pdo1 (Monnom,texte) VALUES ('hhh,'g g g g')");
+
+    $connexion->commit();
+}catch (PDOException $e){
+    $connexion->rollBack();
+}
 
 
 // SELECT ALL
