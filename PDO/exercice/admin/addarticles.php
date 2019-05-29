@@ -7,6 +7,8 @@ require_once "../mysqliConnect.php";
 // PDO
 require_once "../connectPDO.php";
 
+
+
 // si le formulaire a été envoyé
 if(isset($_POST['titre'],$_POST['texte'],$_POST['users_id'])){
 
@@ -170,4 +172,3 @@ https://getbootstrap.com/docs/4.0/components/forms/
 
 </html>
 <?php
-var_dump($_POST);
