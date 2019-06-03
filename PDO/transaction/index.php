@@ -33,14 +33,21 @@ try {
 
     $connexion->beginTransaction(); // début de transaction
 
+    $p = $connexion->prepare("INSERT INTO pdo1 (nom,texte) VALUES (?,?)");
+    
+    $p->bindParam(1,$nom,PDO::PARAM_STR);
+    $p->bindParam(2,$texte,PDO::PARAM_STR);
+    
+    $p->execute();
 
     $connexion->exec("INSERT INTO pdo1 (nom,texte) VALUES ('ggg','g g g g')");
 
-    $connexion->exec("INSERT INTO pdo1 (Monnom,texte) VALUES ('hhh,'g g g g')");
+    $connexion->exec("INSERT INTO pdo1 (nom,texte) VALUES ('hhh','g g g g')");
 
     $connexion->commit();
 }catch (PDOException $e){
     $connexion->rollBack();
+    $erreur = $e->getMessage();
 }
 
 
@@ -64,7 +71,9 @@ if($recupArt->rowCount()){
 <body>
 
 <h1>PDO1</h1>
-
+<?php
+if(isset($erreur)) echo "<h3>$erreur</h3>";
+?>
 <div>
     <?php
     foreach ($recupAll as $item){
