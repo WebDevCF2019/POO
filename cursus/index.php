@@ -34,3 +34,9 @@ try {
     echo $e->getMessage();
     die();
 }
+
+/*
+ * public
+ */
+
+require_once "controller/publicController.php";
