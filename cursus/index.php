@@ -13,7 +13,14 @@
 
 require_once "config.php";
 
-require_once "model/MyPDO.php";
+/*
+ * create autoload - find class into model's folder
+ */
+
+spl_autoload_register(function ($class) {
+    require_once 'model/' . $class . '.php';
+});
+
 
 // connexion to our DB
 try {
@@ -23,7 +30,7 @@ try {
         DB_PWD,
         null,
         PRODUCT);
-}catch (PDOException $e){
+} catch (PDOException $e) {
     echo $e->getMessage();
     die();
 }
