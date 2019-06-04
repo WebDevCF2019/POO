@@ -19,7 +19,7 @@ class theuser
             // login anonyme
             $this->thelogin = "Anonyme";
         }else{
-
+            // ICI
         }
     }
 
