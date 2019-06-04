@@ -19,7 +19,19 @@ class theuser
             // login anonyme
             $this->thelogin = "Anonyme";
         }else{
-            // ICI
+            // hydratation
+            $this->hydrate($datas);
+        }
+    }
+
+    // fonction d'hydratation , sert à utiliser les $datas du constructeur pour appeler les setters et remplir les attributs
+
+    protected function hydrate(array $values){
+        foreach($values AS $key => $value){
+            $setterName = "set".ucfirst($key);
+            if(method_exists($this, $setterName)){
+                $this->$setterName($value);
+            }
         }
     }
 
@@ -54,9 +66,9 @@ class theuser
         $this->thepwd = $this->sha256(trim($thepwd));
     }
 
-    // methodes protected
+    // methodes protected qui crypte en sha256
 
-    protected function sha256(string $arg){
+    public function sha256(string $arg){
         return hash("sha256",$arg);
     }
 
