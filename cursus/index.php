@@ -35,6 +35,11 @@ try {
     die();
 }
 
+
+// create common's Managers
+
+$thesectionM = new thesectionManager($connexion);
+
 /*
  * public
  */
