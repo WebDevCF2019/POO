@@ -13,6 +13,19 @@
 
 require_once "config.php";
 
+// composer vendor loading (for twig)
+require_once 'vendor/autoload.php';
+
+
+
+// Initialize twig templating system
+$loader = new \Twig\Loader\FilesystemLoader('view/');
+$twig = new \Twig\Environment($loader);
+
+
+
+
+
 /*
  * create autoload - find class into model's folder
  */

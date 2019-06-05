@@ -6,4 +6,6 @@
 // on crée notre menu
 $menu = $thesectionM->creerMenu();
 
-var_dump($menu);
+// on appelle la vue générée par twig
+
+$twig->render('index.html.twig');
