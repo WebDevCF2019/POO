@@ -1,5 +1,6 @@
 <?php
 require_once 'Personnage.php';
+require_once 'Magicien.php';
 ?>
 <!DOCTYPE html>
 
@@ -29,9 +30,10 @@ require_once 'Personnage.php';
   //utilisation de l'hydratation pour utiliser nos setters, mais ceux-ci n'existe pas => valeurs par défaut
   $user3 = new Personnage(["h"=>"khykg","uhgu"=>5]);
   $user4 = new Personnage();
+  $user5 = new Magicien();
         ?>
         <pre><?php
-           var_dump($user1,$user2,$user3,$user4);
+           var_dump($user1,$user2,$user3,$user4,$user5);
            ?>
         </pre>
     </body>
