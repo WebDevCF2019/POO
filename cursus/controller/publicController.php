@@ -8,4 +8,4 @@ $menu = $thesectionM->creerMenu();
 
 // on appelle la vue générée par twig
 
-$twig->render('index.html.twig');
+echo $twig->render('index.html.twig');
