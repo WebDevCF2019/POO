@@ -27,7 +27,7 @@ $twig = new \Twig\Environment($loader);
 
 
 /*
- * create autoload - find class into model's folder
+ * create class autoload - find class into model's folder
  */
 
 spl_autoload_register(function ($class) {

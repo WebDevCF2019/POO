@@ -1,1 +1,16 @@
-{% extends "base.html.twig" %}
+{# on étend le template depuis base.html.twig, qui est donc son parent #}
+{% extends "bootstrap.html.twig" %}
+
+{# on veut surcharger le title, on utilise le bloc, on récupère le contenu du parent {{ parent() }} et on rajoute notre texte #}
+{% block title %}{{ parent() }} | Notre accueil{% endblock %}
+
+{# on vide le bloc haut du parent en utilisant les balises du bloc "haut"#}
+{% block haut %}{% endblock %}
+
+{% block milieu %}
+{% for item in lemenu  %}
+    {{ item.thetitle }}
+    {% else %}
+    <h3>Pas encore d'éléments dans le menu</h3>
+{% endfor %}
+{% endblock %}
