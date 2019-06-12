@@ -4,6 +4,9 @@
 {# on veut surcharger le title, on utilise le bloc, on récupère le contenu du parent {{ parent() }} et on rajoute notre texte #}
 {% block title %}{{ parent() }} | Notre accueil{% endblock %}
 
+{% block menuhaut %}
+{% include "menuhautpublic.html.twig" %}
+{% endblock %}
 
 {% block milieu %}
     <!-- Page Content -->
@@ -15,9 +18,5 @@
             </div>
         </div>
     </div>
-{% for item in lemenu  %}
-    {{ item.thetitle }}
-    {% else %}
-    <h3>Pas encore d'éléments dans le menu</h3>
-{% endfor %}
+
 {% endblock %}
