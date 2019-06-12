@@ -5,7 +5,7 @@
         </a>
     </li>
 {% for item in lemenu  %}
-    <li class="nav-item"><a class="nav-link" href="?idthesection={{ item.thetitle }}">{{ item.idthesection }}</a></li>
+    <li class="nav-item"><a class="nav-link" href="?idthesection={{ item.idthesection }}">{{ item.thetitle }}</a></li>
 {% else %}
     <li class="nav-item"><a class="nav-link" href="#">Pas encore d'éléments dans le menu</a></li>
 {% endfor %}

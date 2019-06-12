@@ -10,13 +10,20 @@
 
 {% block milieu %}
     <!-- Page Content -->
-    <div class="container">
+<main role="main" class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1 class="mt-5">Les classes du CF2m</h1>
                 <p class="lead">Les class gérant les classes du CF2m, quelle classe!</p>
             </div>
-        </div>
-    </div>
+            <div>
 
+            </div>
+        </div>
+</main>
+
+{% endblock %}
+
+{% block bas %}
+{% include "footer.html.twig" %}
 {% endblock %}
