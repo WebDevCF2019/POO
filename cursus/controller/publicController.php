@@ -30,7 +30,22 @@ if(isset($_GET['idthesection'])&&ctype_digit($_GET['idthesection'])){
 
 }elseif(isset($_GET['connect'])) {
 
+    // on a pas envoyé le formulaire
+    if(empty($_POST)){
 
+        // on appel le formulaire
+        echo $twig->render("connectPublic.html.twig",["lemenu" => $menu]);
+
+    }else{
+        // instanciation de l'objet theuser avec hydratation des variables de notre formulaire
+        $user = new theuser($_POST);
+        /*
+         *
+         *
+         *
+         */
+        var_dump($user);
+    }
 
 
 
@@ -39,7 +54,7 @@ if(isset($_GET['idthesection'])&&ctype_digit($_GET['idthesection'])){
  * Page d'accueil publique
  */
 }else {
-    
+
 
 // on sélectionne toutes les sections avec leur description pour les afficher sur la page d'accueil
     $section = $thesectionM->selectionnerSectionIndexPublic();
