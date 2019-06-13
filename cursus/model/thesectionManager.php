@@ -29,4 +29,18 @@ class thesectionManager
 
     }
 
+    // création de l'affichage de toutes les sections sur l'accueil publique du site
+    public function selectionnerSectionIndexPublic(): array {
+        $sql = "SELECT * FROM thesection ORDER BY thetitle ASC ;";
+        $recup = $this->db->query($sql);
+
+        if($recup->rowCount()===0){
+            return [];
+        }else{
+            return $recup->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+    }
+
+
 }
