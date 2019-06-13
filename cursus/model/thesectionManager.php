@@ -23,9 +23,9 @@ class thesectionManager
 
         if($recup->rowCount()===0){
             return [];
-        }else{
-            return $recup->fetchAll(PDO::FETCH_ASSOC);
         }
+            return $recup->fetchAll(PDO::FETCH_ASSOC);
+
 
     }
 
@@ -36,9 +36,25 @@ class thesectionManager
 
         if($recup->rowCount()===0){
             return [];
-        }else{
-            return $recup->fetchAll(PDO::FETCH_ASSOC);
         }
+            return $recup->fetchAll(PDO::FETCH_ASSOC);
+
+
+    }
+
+    // récupération d'une section d'après son id (détail des sections)
+    public function selectionnerSectionParId(int $idsection): array {
+        // si la variable vaut 0 (id ne peux valoir 0 ou la conversion a donné 0)
+        if(empty($idsection)){
+            return [];
+        }
+        $sql = "SELECT * FROM thesection ORDER BY thetitle ASC ;";
+        $recup = $this->db->query($sql);
+
+        if($recup->rowCount()===0){
+            return [];
+        }
+        return $recup->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
