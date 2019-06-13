@@ -52,6 +52,7 @@ try {
 // create common's Managers
 
 $thesectionM = new thesectionManager($connexion);
+$thestudentM = new thestudentManager($connexion);
 
 /*
  * public

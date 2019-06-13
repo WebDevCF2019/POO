@@ -48,13 +48,15 @@ class thesectionManager
         if(empty($idsection)){
             return [];
         }
-        $sql = "SELECT * FROM thesection ORDER BY thetitle ASC ;";
-        $recup = $this->db->query($sql);
+        $sql = "SELECT * FROM thesection WHERE idthesection = ? ;";
+        $recup = $this->db->prepare($sql);
+        $recup->bindValue(1,$idsection,PDO::PARAM_INT);
+        $recup->execute();
 
         if($recup->rowCount()===0){
             return [];
         }
-        return $recup->fetchAll(PDO::FETCH_ASSOC);
+        return $recup->fetch(PDO::FETCH_ASSOC);
 
     }
 
