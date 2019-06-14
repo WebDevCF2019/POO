@@ -15,6 +15,14 @@ class thesectionManager
 
     // actions (méthodes) généralement publiques car exécutées depuis un contrôleur, dont le nom est généralement un verbe, applicable aux instances de thesection
 
+    /*
+     *
+     *
+     * Méthodes pour la partie publique du site
+     *
+     *
+     *
+     */
 
     // création du menu qui nous renvoie un tableau
     public function creerMenu(): array {
@@ -39,7 +47,6 @@ class thesectionManager
         }
             return $recup->fetchAll(PDO::FETCH_ASSOC);
 
-
     }
 
     // récupération d'une section d'après son id (détail des sections)
@@ -60,5 +67,25 @@ class thesectionManager
 
     }
 
+
+    /*
+     *
+     *
+     * Méthodes pour l'admin du site
+     *
+     *
+     */
+
+    // création de l'affichage de toutes les sections avec ses utilisateurs sur l'accueil de l'administration du site
+    public function selectionnerSectionIndexAdmin(): array {
+        $sql = "SELECT * FROM thesection ORDER BY thetitle ASC ;";
+        $recup = $this->db->query($sql);
+
+        if($recup->rowCount()===0){
+            return [];
+        }
+        return $recup->fetchAll(PDO::FETCH_ASSOC);
+
+    }
 
 }

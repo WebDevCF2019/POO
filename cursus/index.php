@@ -30,8 +30,6 @@ $twig = new \Twig\Environment($loader);
 
 
 
-
-
 /*
  * create class autoload - find class into model's folder
  */
@@ -61,8 +59,21 @@ $thesectionM = new thesectionManager($connexion);
 $thestudentM = new thestudentManager($connexion);
 $theuserM = new theuserManager($connexion);
 
-/*
- * public
- */
+// we're connected
 
-require_once "controller/publicController.php";
+if(isset($_SESSION['myKey'])&&$_SESSION['myKey']==session_id()){
+
+    /*
+     * admin
+     */
+    require_once "controller/adminController.php";
+
+}else {
+
+    /*
+     * public
+     */
+
+    require_once "controller/publicController.php";
+
+}

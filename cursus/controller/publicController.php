@@ -43,7 +43,14 @@ if(isset($_GET['idthesection'])&&ctype_digit($_GET['idthesection'])){
         // utilisation du manager de theuser pour vérifier la validité de la connexion à notre administration
         $recupUser = $theuserM->connecterUser($user);
 
-        var_dump($recupUser);
+        // si on est connecté
+        if($recupUser){
+            // redirection vers le contrôleur frontal
+            header("Location: ./");
+        }else{
+            // retour à notre formulaire de connexion avec affichage d'une erreur
+            echo $twig->render("connectPublic.html.twig",["lemenu" => $menu, "erreur"=>"Login ou mot de passe incorrect"]);
+        }
 
     }
 
