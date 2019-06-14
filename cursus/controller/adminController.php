@@ -26,6 +26,8 @@ if (isset($_GET['disconnect'])) {
 
 // on appelle la vue générée par twig
 
-    echo $twig->render('accueilAdmin.html.twig', []);
+    // on va chercher les sections et leurs étudiants (si il y en a)
+    $recup = $thesectionM->selectionnerSectionIndexAdmin();
+    echo $twig->render('accueilAdmin.html.twig', ["section"=>$recup]);
 
 }

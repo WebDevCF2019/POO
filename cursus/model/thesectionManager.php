@@ -78,7 +78,16 @@ class thesectionManager
 
     // création de l'affichage de toutes les sections avec ses utilisateurs sur l'accueil de l'administration du site
     public function selectionnerSectionIndexAdmin(): array {
-        $sql = "SELECT * FROM thesection ORDER BY thetitle ASC ;";
+        $sql = "SELECT a.idthesection, a.thetitle, LEFT(a.thedesc,100) AS thedesc,
+	GROUP_CONCAT(c.thename SEPARATOR '|||') AS thename, 
+    GROUP_CONCAT(c.thesurname SEPARATOR '|||') AS thesurname
+	FROM thesection a
+		LEFT JOIN thesection_has_thestudent b
+			ON a.idthesection = b.thesection_idthesection
+		LEFT JOIN thestudent c
+			ON b.thestudent_idthestudent = c.idthestudent
+    GROUP BY a.idthesection        
+    ;";
         $recup = $this->db->query($sql);
 
         if($recup->rowCount()===0){
