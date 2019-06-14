@@ -8,6 +8,12 @@
  */
 
 /*
+ * Lancement d'une session
+ */
+
+session_start();
+
+/*
  * Load Dependencies
  */
 
@@ -53,6 +59,7 @@ try {
 
 $thesectionM = new thesectionManager($connexion);
 $thestudentM = new thestudentManager($connexion);
+$theuserM = new theuserManager($connexion);
 
 /*
  * public

@@ -37,14 +37,14 @@ if(isset($_GET['idthesection'])&&ctype_digit($_GET['idthesection'])){
         echo $twig->render("connectPublic.html.twig",["lemenu" => $menu]);
 
     }else{
-        // instanciation de l'objet theuser avec hydratation des variables de notre formulaire
+        // instanciation de l'objet theuser avec hydratation des variables de notre formulaire (indispensable pour l'encodage en sha256 du mot de passe et bonne pratique)
         $user = new theuser($_POST);
-        /*
-         *
-         *
-         *
-         */
-        var_dump($user);
+
+        // utilisation du manager de theuser pour vérifier la validité de la connexion à notre administration
+        $recupUser = $theuserM->connecterUser($user);
+
+        var_dump($recupUser);
+
     }
 
 
