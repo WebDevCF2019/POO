@@ -27,6 +27,8 @@ require_once 'vendor/autoload.php';
 // Initialize twig templating system
 $loader = new \Twig\Loader\FilesystemLoader('view/');
 $twig = new \Twig\Environment($loader);
+// twig extension for text
+$twig->addExtension(new Twig_Extensions_Extension_Text());
 
 
 

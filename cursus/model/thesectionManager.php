@@ -78,7 +78,7 @@ class thesectionManager
 
     // création de l'affichage de toutes les sections avec ses utilisateurs sur l'accueil de l'administration du site
     public function selectionnerSectionIndexAdmin(): array {
-        $sql = "SELECT a.idthesection, a.thetitle, LEFT(a.thedesc,100) AS thedesc,
+        $sql = "SELECT a.idthesection, a.thetitle, LEFT(a.thedesc,120) AS thedesc,
 	GROUP_CONCAT(c.thename SEPARATOR '|||') AS thename, 
     GROUP_CONCAT(c.thesurname SEPARATOR '|||') AS thesurname
 	FROM thesection a
