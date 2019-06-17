@@ -16,6 +16,26 @@ if (isset($_GET['disconnect'])) {
 
     $theuserM->deconnecterSession();
 
+}elseif (isset($_GET['addsection'])){
+
+    /*
+     *
+     * On veut ajouter une section
+     *
+     */
+
+    // si on a pas cliqué envoyé sur le formulaire
+    if(empty($_POST)){
+
+
+
+        // appel de la vue
+        echo $twig->render("ajoutSectionAdmin.html.twig");
+
+    }
+
+
+
 } else {
 
     /*
