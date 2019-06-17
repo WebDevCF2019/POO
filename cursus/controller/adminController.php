@@ -16,6 +16,57 @@ if (isset($_GET['disconnect'])) {
 
     $theuserM->deconnecterSession();
 
+}elseif (isset($_GET['update'])&&ctype_digit($_GET['update'])&&!empty($_GET['update'])){
+
+    /*
+     *
+     * On veut modifier une section
+     *
+     */
+
+
+    $updateId = (int) $_GET['update'];
+
+    // on récupère la section avec son manager et grâce à son id
+
+    $recupSection = $thesectionM->selectionnerSectionParId($updateId);
+
+    // on n'arrive pas à récupéré la section pour la modifier
+    if(empty($recupSection)){
+
+        // redirection vers l'accueil
+        header("Location: ./");
+        exit();
+
+    }
+
+    // pas envoyé
+    if(empty($_POST)){
+
+        // appel de la vue
+        echo $twig->render("updateSectionAdmin.html.twig",["contenu"=>$recupSection]);
+
+    }else{
+
+        // on crée une instance de type thesection avec le contenu du formulaire en paramètre
+        $update = new thesection($_POST);
+
+        // var_dump($update);
+        // utilisation du manager de thesection pour mettre à jour
+
+        $forupdate = $thesectionM->updateSection($update,$updateId);
+
+        if($forupdate){
+            header("Location: ./");
+        }else{
+            echo $twig->render("updateSectionAdmin.html.twig",["contenu"=>$recupSection]);
+        }
+
+    }
+
+
+
+
 }elseif (isset($_GET['addsection'])){
 
     /*

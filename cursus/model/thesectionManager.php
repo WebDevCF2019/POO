@@ -128,8 +128,37 @@ class thesectionManager
 
         }
 
+    }
 
+    // Requête pour mettre à jour une section en vérifant si la variable get idsection correspond bien à la variable post idsection (usurpation d'identité)
 
+    public function updateSection(thesection $datas, int $get){
+
+        // vérification que les champs soient valides (pas vides)
+        if(empty($datas->getThetitle())||empty($datas->getThedesc())||empty($datas->getIdthesection())){
+            return false;
+        }
+
+        // vérification contre le contournement des droits
+        if($datas->getIdthesection()!=$get){
+            return false;
+        }
+
+        $sql = "UPDATE thesection SET thetitle=?, thedesc=? WHERE idthesection=?";
+
+        $update = $this->db->prepare($sql);
+
+        $update->bindValue(1,$datas->getThetitle(),PDO::PARAM_STR);
+        $update->bindValue(2,$datas->getThedesc(),PDO::PARAM_STR);
+        $update->bindValue(3,$datas->getIdthesection(),PDO::PARAM_INT);
+
+        try{
+            $update->execute();
+            return true;
+        }catch (PDOException $e){
+            echo $e->getCode();
+            return false;
+        }
 
     }
 
