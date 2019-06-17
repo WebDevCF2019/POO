@@ -162,5 +162,24 @@ class thesectionManager
 
     }
 
+    // pour supprimer une section
+
+    public function deleteSection(int $idsection){
+
+        $sql = "DELETE FROM thesection WHERE idthesection=?";
+
+        $delete = $this->db->prepare($sql);
+        $delete->bindValue(1,$idsection, PDO::PARAM_INT);
+
+        try{
+            $delete->execute();
+            return true;
+        }catch(PDOException $e){
+            echo $e->getCode();
+            return false;
+        }
+
+    }
+
 
 }

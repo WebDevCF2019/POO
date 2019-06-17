@@ -16,6 +16,25 @@ if (isset($_GET['disconnect'])) {
 
     $theuserM->deconnecterSession();
 
+
+}elseif (isset($_GET['delete'])&&ctype_digit($_GET['delete'])&&!empty($_GET['delete'])){
+
+    /*
+     *
+     * On veut supprimer une section
+     *
+     */
+
+
+    $deleteId = (int) $_GET['delete'];
+
+    // on utilise le manager pour supprimer la section
+    $fordelete = $thesectionM->deleteSection($deleteId);
+
+    //header("Location: ./");
+
+
+
 }elseif (isset($_GET['update'])&&ctype_digit($_GET['update'])&&!empty($_GET['update'])){
 
     /*
