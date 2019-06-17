@@ -40,9 +40,14 @@ class thesection
         }
     }
 
-    public function getThetitle(): string
+    public function getThetitle()
     {
-        return $this->thetitle;
+        if(empty($this->thetitle)){
+            return NULL;
+        }else{
+            return $this->thetitle;
+        }
+
     }
 
     public function setThetitle(string $thetitle): void
@@ -52,7 +57,7 @@ class thesection
 
     public function getThedesc(): string
     {
-        return html_entity_decode($this->thedesc);
+        return $this->thedesc;
     }
 
     public function setThedesc(string $thedesc): void

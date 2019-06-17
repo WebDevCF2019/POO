@@ -24,13 +24,31 @@ if (isset($_GET['disconnect'])) {
      *
      */
 
-    // si on a pas cliqué envoyé sur le formulaire
+    // si on a pas cliqué "envoyé" sur le formulaire
     if(empty($_POST)){
-
 
 
         // appel de la vue
         echo $twig->render("ajoutSectionAdmin.html.twig");
+
+    }else{
+
+        // on crée une instance de thesection avec le formulaire POST en paramètre
+        $insert = new thesection($_POST);
+
+        // on appel le manager et on utilise la méthode d'insertion (true en cas de réussite et false en cas d'échec)
+
+        $forinsert = $thesectionM->createSectionAdmin($insert);
+
+        // si l'insertion est réussie
+        if($forinsert){
+            header("Location: ./");
+        }else{
+
+            // appel de la vue avec affichage d'une erreur
+            echo $twig->render("ajoutSectionAdmin.html.twig",["error"=>"Erreur lors de l'insertion, veuillez recommencer"]);
+
+        }
 
     }
 

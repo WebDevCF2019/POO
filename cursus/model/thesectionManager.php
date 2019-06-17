@@ -77,6 +77,7 @@ class thesectionManager
      */
 
     // création de l'affichage de toutes les sections avec ses utilisateurs sur l'accueil de l'administration du site
+
     public function selectionnerSectionIndexAdmin(): array {
         $sql = "SELECT a.idthesection, a.thetitle, LEFT(a.thedesc,120) AS thedesc,
 	GROUP_CONCAT(c.thename SEPARATOR '|||') AS thename, 
@@ -96,5 +97,41 @@ class thesectionManager
         return $recup->fetchAll(PDO::FETCH_ASSOC);
 
     }
+
+    // Requête pour créer une section à partir d'une instance de type thesection
+
+    public function createSectionAdmin(thesection $datas) {
+
+
+        // vérification que les champs soient valides (pas vides)
+
+        if(empty($datas->getThetitle())||empty($datas->getThedesc())){
+            return false;
+        }
+
+        $sql = "INSERT INTO thesection (thetitle,thedesc) VALUES (?,?);";
+
+        $insert = $this->db->prepare($sql);
+
+        $insert->bindValue(1,$datas->getThetitle(),PDO::PARAM_STR);
+        $insert->bindValue(2,$datas->getThedesc(),PDO::PARAM_STR);
+
+
+        // gestion des erreurs avec try catch
+        try {
+            $insert->execute();
+            return true;
+
+        }catch(PDOException $e){
+            echo $e->getCode();
+            return false;
+
+        }
+
+
+
+
+    }
+
 
 }
